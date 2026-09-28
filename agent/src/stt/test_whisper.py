@@ -1,22 +1,11 @@
-from faster_whisper import WhisperModel
+from whisper import WhisperSTT
 
-print("Cargando modelo...")
 
-model = WhisperModel(
-    "base",
-    device="cpu",
-    compute_type="int8"
-)
+print("Iniciando prueba de STT...")
 
-print("Transcribiendo audio...")
+stt = WhisperSTT()
 
-segments, info = model.transcribe(
-    "audio.wav",
-    language="es"
-)
+texto = stt.transcribir("audio.wav")
 
-print("Idioma detectado:", info.language)
 print("\nTranscripción:")
-
-for segment in segments:
-    print(segment.text)
+print(texto)
